@@ -1,0 +1,13 @@
+{
+    "Image":"dollar",
+    "Name":"Finance",
+    "Description":"To manage financial tasks",
+    "Content":"To manage all financial tasks includs:\n* Wallet\n* Accounts\n*Transactions\n* Payments\n* ...",
+    "Access": 900000000,
+    "Reference": "aseqbase/finance",
+    "PreInstalls": [
+        "aseqbase/qrcode"
+    ],
+    "PostInstalls": [],
+    "MetaData":[]
+}
