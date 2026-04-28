@@ -1,0 +1,13 @@
+{
+    "name":"Finance",
+    "description":"To manage financial tasks",
+    "type": "package",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Mohammad Fathi",
+            "email": "i@mimfa.net"
+        }
+    ],
+    "require": {}
+}
