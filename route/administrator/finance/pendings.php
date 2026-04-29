@@ -11,7 +11,7 @@ $routeHandler = function ($data) {
     auth(\_::$User->AdminAccess);
 
     module("Table");
-    $table = new MiMFa\Module\Table(table("Account")->OrderBy("CreateTime", false));
+    $table = new MiMFa\Module\Table(table("Finance_Account")->OrderBy("CreateTime", false));
     $table->SelectCondition = "Status IN ('" . join("', '", Account::PendingStatuses()) . "')";
     $table->IncludeColumns = [
         "UpdateTime",
@@ -93,7 +93,7 @@ $routeHandler = function ($data) {
         $status = receivePatch("Status");
         $tr = receivePatch("Transaction");
         if ($id) {
-            $MDT = new MetaDataTable(null, "Account");
+            $MDT = new MetaDataTable(null, "Finance_Account");
             $md = $MDT->MetaData($id);
             switch ($status) {
                 case 1:

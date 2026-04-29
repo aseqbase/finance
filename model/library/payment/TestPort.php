@@ -50,7 +50,7 @@ class TestPort extends Port
             "MetaData" => [
                 "Phone" => $phone,
                 "Email" => $email,
-                ...($relation === "Invoice" ? ["InvoiceId" => $relationId] : []),
+                ...($relation === "Finance_Invoice" ? ["InvoiceId" => $relationId] : []),
                 "ReferrerId" => $referrerId,
                 "Callback" => $callbackUrl,
                 "Success" => $onSuccess,

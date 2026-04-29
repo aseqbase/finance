@@ -9,7 +9,7 @@ $routeHandler = function ($data) {
     auth(\_::$User->AdminAccess);
 
     module("Table");
-    $table = new MiMFa\Module\Table(table("Account")->OrderBy("UpdateTime", false));
+    $table = new MiMFa\Module\Table(table("Finance_Account")->OrderBy("UpdateTime", false));
     $table->SelectCondition = "Status IN ('" . join("', '", Account::PledgeStatuses()) . "')";
     $table->IncludeColumns = [
         "UpdateTime",

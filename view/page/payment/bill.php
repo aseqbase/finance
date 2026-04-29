@@ -20,10 +20,10 @@ if (!$r || !$rid) {
                 set($bill, $r);
         }
         $n = get($bill, "Name");
-        $r = get($bill, "Table") ?? "Invoice";
-        $rid = table("Invoice")->SelectValue("Id", "Id=:Id OR Name=:Name", [":Id" => get($bill, "Id") ?? $t, ":Name" => $n ?? $t]);
-        if ($r === "Invoice" && $bill)
-            $rid = table("Invoice")->Replace([
+        $r = get($bill, "Table") ?? "Finance_Invoice";
+        $rid = table($r)->SelectValue("Id", "Id=:Id OR Name=:Name", [":Id" => get($bill, "Id") ?? $t, ":Name" => $n ?? $t]);
+        if ($r === "Finance_Invoice" && $bill)
+            $rid = table("Finance_Invoice")->Replace([
                 ...($rid ? ["Id" => $rid] : []),
                 "UserId" => get($bill, "UserId") ?: \_::$User->Id,
                 "Name" => $nt = $n ?: $t,

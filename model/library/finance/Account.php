@@ -121,7 +121,7 @@ class Account extends MetaDataTable
 
     public function __construct($dataBase = null, $name = null, $prefix = null, $nameConvertors = null)
     {
-        parent::__construct($dataBase ?? \_::$Back->DataBase, $name ?? "Account", $prefix ?? \_::$Back->DataBasePrefix, $nameConvertors ?? \_::$Back->DataTableNameConvertors);
+        parent::__construct($dataBase ?? \_::$Back->DataBase, $name ?? "Finance_Account", $prefix ?? \_::$Back->DataBasePrefix, $nameConvertors ?? \_::$Back->DataTableNameConvertors);
     }
 
     public function IsPlatform($userId)

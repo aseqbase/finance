@@ -6,7 +6,7 @@ $data = $data ?? [];
 $routeHandler = function ($data) {
     auth(\_::$User->AdminAccess);
     module("Table");
-    $module = new Table(table("Invoice")->OrderBy("CreateTime", false));
+    $module = new Table(table("Finance_Invoice")->OrderBy("CreateTime", false));
     $module->KeyColumns = ["Title"];
     $module->IncludeColumns = ["Code" => "Name", "Title", "User" => "UserId", "Source", "Amount", "Currency", "Status", "Destination", "Description", "UpdateTime", "MetaData"];
     $module->ExcludeColumns = ["Currency", "MetaData"];

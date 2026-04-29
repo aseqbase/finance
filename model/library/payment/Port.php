@@ -168,7 +168,7 @@ class Port
             "MetaData" => [
                 "Phone" => $phone,
                 "Email" => $email,
-                ...($relation === "Invoice" ? ["InvoiceId" => $relationId] : []),
+                ...($relation === "Finance_Invoice" ? ["InvoiceId" => $relationId] : []),
                 "ReferrerId" => $referrerId,
                 "Callback" => $callbackUrl,
                 "Success" => $onSuccess,
@@ -293,7 +293,7 @@ class Port
     public function Invoice(&$transaction, $paid = null, $currency = null)
     {
         library("finance/MetaDataTable");
-        $MDT = new MetaDataTable(\_::$Back->DataBase, "Invoice", \_::$Back->DataBasePrefix, \_::$Back->DataTableNameConvertors);
+        $MDT = new MetaDataTable(\_::$Back->DataBase, "Finance_Invoice", \_::$Back->DataBasePrefix, \_::$Back->DataTableNameConvertors);
         $invoice = [];
         if ($invoiceId = $transaction["MetaData"]["InvoiceId"] ?? null) {
             $invoice = $MDT->Get($invoiceId);
@@ -400,16 +400,16 @@ class Port
             unset($transaction["MetaData"]["Callback"]);
             unset($transaction["MetaData"]["Success"]);
             unset($transaction["MetaData"]["Error"]);
-            if (table("Account")->Insert($transaction)) {
+            if (table("Finance_Account")->Insert($transaction)) {
                 $fee = get($transaction, "MetaData", "Fee");
                 $feeAmount = get($fee, "Amount");
                 if ($feeAmount && get($fee, "Active"))
-                    table("Account")->Insert([
+                    table("Finance_Account")->Insert([
                         "Transaction" => uniqid("F" . \_::$User->Id . "U"),
                         "Amount" => $feeAmount,
                         "Currency" => \_::$Joint->Finance->Currency,
-                        "Relation" => "Account",
-                        "RelationId" => table("Account")->Last("Id", "Transaction=:TR", [":TR" => get($transaction, "Transaction")]),
+                        "Relation" => "Finance_Account",
+                        "RelationId" => table("Finance_Account")->Last("Id", "Transaction=:TR", [":TR" => get($transaction, "Transaction")]),
                         "SourceId" => \_::$User->Id,
                         "DestinationId" => \_::$Joint->Finance->PlatformAccount,
                         "Description" => "Fee",
@@ -421,7 +421,7 @@ class Port
                 $transaction["SourceId"] = \_::$User->Id;
                 $transaction["DestinationId"] = \_::$Joint->Finance->PlatformAccount;
                 $transaction["Platform"] = \_::$Front->Name;
-                if ($id = table("Account")->Insert($transaction)) {
+                if ($id = table("Finance_Account")->Insert($transaction)) {
                     $this->Invoice($transaction, $invoice["Amount"], $invoice["Currency"]);
                     return $id;
                 }
@@ -434,7 +434,7 @@ class Port
         unset($transaction["MetaData"]["Callback"]);
         unset($transaction["MetaData"]["Success"]);
         unset($transaction["MetaData"]["Error"]);
-        if ($id = table("Account")->Insert($transaction)) {
+        if ($id = table("Finance_Account")->Insert($transaction)) {
             if (strtolower($transaction["Relation"] ?? "") !== "invoice")
                 $this->Invoice($transaction, false);
             return $id;

@@ -24,10 +24,10 @@ CREATE DATABASE IF NOT EXISTS `%%DATABASE%%` DEFAULT CHARACTER SET utf8mb4 COLLA
 USE `%%DATABASE%%`;
 
 --
--- Table structure for table `%%PREFIX%%Invoice`
+-- Table structure for table `%%PREFIX%%Finance_Invoice`
 --
 
-CREATE TABLE IF NOT EXISTS `%%PREFIX%%Invoice` (
+CREATE TABLE IF NOT EXISTS `%%PREFIX%%Finance_Invoice` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UserId` int(11) DEFAULT NULL,
   `Name` tinytext DEFAULT NULL,
@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `%%PREFIX%%Invoice` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
--- Table structure for table `%%PREFIX%%Account`
+-- Table structure for table `%%PREFIX%%Finance_Account`
 --
 
-CREATE TABLE IF NOT EXISTS `%%PREFIX%%Account` (
+CREATE TABLE IF NOT EXISTS `%%PREFIX%%Finance_Account` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Relation` tinytext DEFAULT NULL,
   `RelationId` int(11) DEFAULT NULL,

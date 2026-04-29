@@ -223,7 +223,7 @@ class Finance extends \MiMFa\Library\Revise
 
     public function GetTransaction($id, $succeed = null)
     {
-        return table("Account")->SelectRow("*", ($succeed?"Status IN ('".join("','", Account::SuccessStatuses())."') AND ":($succeed === false?"Status NOT IN ('".join("','", Account::SuccessStatuses())."') AND ":""))."Id=:Id", [":Id" => $id]);
+        return table("Finance_Account")->SelectRow("*", ($succeed?"Status IN ('".join("','", Account::SuccessStatuses())."') AND ":($succeed === false?"Status NOT IN ('".join("','", Account::SuccessStatuses())."') AND ":""))."Id=:Id", [":Id" => $id]);
     }
 
     public function StandardCurrency(float|null $amount = 0, $fromCurrency = null)

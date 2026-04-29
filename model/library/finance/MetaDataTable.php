@@ -8,7 +8,7 @@ class MetaDataTable extends \MiMFa\Library\MetaDataTable
 {
     public function __construct($dataBase = null, $name = null, $prefix = null, $nameConvertors = null)
     {
-        parent::__construct($dataBase ?? \_::$Back->DataBase, $name ?? "Invoice", $prefix ?? \_::$Back->DataBasePrefix, $nameConvertors ?? \_::$Back->DataTableNameConvertors);
+        parent::__construct($dataBase ?? \_::$Back->DataBase, $name ?? "Finance_Invoice", $prefix ?? \_::$Back->DataBasePrefix, $nameConvertors ?? \_::$Back->DataTableNameConvertors);
     }
 
     public function IsPaid($idOrInstance, $metaData = null)

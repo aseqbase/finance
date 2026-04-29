@@ -14,7 +14,7 @@ library("finance/Account");
 $account_MDT = new \MiMFa\Library\Finance\Account();
 
 module("Table");
-$table = new MiMFa\Module\Table(table("Account")->AS("A")
+$table = new MiMFa\Module\Table(table("Finance_Account")->AS("A")
     ->Join(table("User")->AS("SU"), "ABS(SourceId)=SU.Id")
     ->Join(table("User")->AS("DU"), "ABS(DestinationId)=DU.Id")
     ->OrderBy("A.Id", false));
