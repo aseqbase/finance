@@ -15,8 +15,8 @@ $account_MDT = new \MiMFa\Library\Finance\Account();
 
 module("Table");
 $table = new MiMFa\Module\Table(table("Finance_Account")->AS("A")
-    ->Join(table("User")->AS("SU"), "ABS(SourceId)=SU.Id")
-    ->Join(table("User")->AS("DU"), "ABS(DestinationId)=DU.Id")
+    ->Join(table("User")->AS("SU"), "SU.Id=ABS(SourceId)")
+    ->Join(table("User")->AS("DU"), "DU.Id=ABS(DestinationId)")
     ->OrderBy("A.Id", false));
 $table->KeyColumn = "A.Id";
 $table->SelectCondition = "(SourceId=:Id OR DestinationId=:Id) AND (Currency IS NULL OR Currency=:Currency)";
