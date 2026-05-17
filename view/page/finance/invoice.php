@@ -7,6 +7,7 @@ $table = strToProper(\_::$Address->UrlResource);
 $id = received("Id") ?? received("Code");
 if (!$id)
     return deliverError("There is no '$table'!");
+if(strtolower($table)==="invoice") $table = "Finance_".$table;
 $invoice = table($table)->SelectRow("*", ["(Id=:Id OR Name=:Id)", authCondition(checkStatus: false)], [":Id" => $id]);
 if (!$invoice)
     return deliverError("There is not find any '$table'!");
