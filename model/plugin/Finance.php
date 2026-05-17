@@ -156,7 +156,7 @@ class Finance extends \MiMFa\Library\Revise
      * @category Payment
      * @field text
      */
-    public $InvoiceUrlPath = "/finance/invoice";
+    public $InvoiceUrlPath = "/finance/finance_invoice";
     /**
      * @category Account
      * @field path
