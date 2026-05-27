@@ -98,6 +98,7 @@ if (has($posted, \_::$Joint->Finance->SubmitRequestKey)) {
     $module->Image = "credit-card";
     $module->Title = \_::$Joint->Finance->PaymentTitle;
     $module->Description = \_::$Joint->Finance->PaymentDescription;
+    $pairs = \_::$Joint->Finance->GetPlatformPairs($a, $u ?: \_::$Joint->Finance->Currency);
 
     style("
         :is(.bill,.form.payment){
@@ -144,11 +145,11 @@ if (has($posted, \_::$Joint->Finance->SubmitRequestKey)) {
                         \_::$Joint->Finance->PlatformRequestKey,
                         get($getted, \_::$Joint->Finance->PlatformRequestKey),
                         title: $pat,
-                        options: \_::$Joint->Finance->GetPlatformPairs($a, $u ?: \_::$Joint->Finance->Currency),
+                        options: $pairs,
                         attributes: [
                         ]
                     ),
-                    ...(isEmpty($a)?[]:[Struct::SubmitButton(\_::$Joint->Finance->SubmitRequestKey, "Pay", ["class" => "main"])])
+                    ...((isEmpty($a) || !$pairs)?[]:[Struct::SubmitButton(\_::$Joint->Finance->SubmitRequestKey, "Pay", ["class" => "main"])])
                 ],
                 rtrim(\_::$Joint->Finance->PaymentUrlPath, "\/\\") . "?" .
                 join("&", loop([
