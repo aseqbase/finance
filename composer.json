@@ -1,5 +1,5 @@
 {
-    "name":"Finance",
+    "name":"aseqbase/finance",
     "description":"To manage financial tasks",
     "type": "package",
     "license": "GPL-3.0-only",
