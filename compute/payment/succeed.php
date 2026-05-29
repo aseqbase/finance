@@ -3,6 +3,7 @@ use MiMFa\Library\Convert;
 use MiMFa\Library\Struct;
 use MiMFa\Library\Script;
 
+$data = $data??[];
 $token = get($data, "Token");
 if (!$token)
     return false;
@@ -38,7 +39,7 @@ if ($transaction && $transaction["Relation"] && $transaction["RelationId"] && (!
     $counter->Description = "Refer to complete the process";
     $counter->Class = "button be inline center green";
     $counter->TagName = "button";
-    $counter["onclick"] = "load(" . MiMFa\Library\Script::Convert("/finance/$r?id=".urlencode($rid)) . ")";
+    $counter["onclick"] = "load(" . MiMFa\Library\Script::Convert(\_::$Joint->Finance->RootUrlPath. strtolower($transaction["Relation"])."?id=".urlencode($transaction["RelationId"])) . ")";
     style(".{$prepage->MainClass} :is(.image,.icon) {color:var(--color-green) !important;}");
     $prepage->Render();
     $counter->Render();

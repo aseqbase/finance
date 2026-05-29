@@ -182,7 +182,7 @@ class Port
         if (isEmpty($amount)) 
             return deliverRedirect(
                 Struct::Warning($this->WaitMessage),
-                "/finance/".($relation??"invoice")."?Id=$relationId"
+                \_::$Joint->Finance->RootUrlPath. strtolower($relation??"invoice")."?Id=$relationId"
             );
         elseif ($amount <= 0) {
             $token = $data["MetaData"]["Token"] = $data["MetaData"]["Token"] ?? getId(true);
@@ -195,7 +195,7 @@ class Port
             }
             return deliverRedirect(
                 Struct::Warning($this->PaidMessage),
-                "/finance/".($relation??"invoice")."?Id=$relationId"
+                \_::$Joint->Finance->RootUrlPath. strtolower($relation??"invoice")."?Id=$relationId"
             );
         } else {
             $result = $this->Initiate($data);

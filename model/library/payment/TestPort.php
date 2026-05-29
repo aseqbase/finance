@@ -67,7 +67,7 @@ class TestPort extends Port
         if (isEmpty($amount)) {
             return deliverRedirect(
                 Struct::Warning($this->WaitMessage),
-                "/finance/".($relation??"invoice")."?Id=$relationId"
+                \_::$Joint->Finance->RootUrlPath. strtolower($relation??"invoice")."?Id=$relationId"
             );
         } else
             switch ($data["Status"] = $this->FinalStatus) {

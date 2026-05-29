@@ -2,6 +2,7 @@
 
 use MiMFa\Library\Struct;
 
+$data = $data??[];
 $token = get($data, "Token");
 if (!$token)
     return false;
@@ -27,7 +28,7 @@ if ($transaction) {
     $counter->Description = "Refer to complete the process";
     $counter->Class = "button be inline center red";
     $counter->TagName = "button";
-    $counter["onclick"] = "load(" . MiMFa\Library\Script::Convert("/finance/$r?id=".urlencode($rid)) . ")";
+    $counter["onclick"] = "load(" . MiMFa\Library\Script::Convert(\_::$Joint->Finance->RootUrlPath. strtolower($transaction["Relation"])."?id=".urlencode($transaction["RelationId"])) . ")";
     style(".{$prepage->MainClass} .image {color:var(--color-red);}");
     $prepage->Render();
     $counter->Render();
