@@ -149,6 +149,11 @@ class Finance extends \MiMFa\Library\Revise
     public $WalletImage = "wallet";
     /**
      * @category Payment
+     * @field bool
+     */
+    public $TestPayment = false;
+    /**
+     * @category Payment
      * @field text
      */
     public $RootUrlPath = "/finance/";
