@@ -3,12 +3,13 @@ use MiMFa\Library\Convert;
 use MiMFa\Library\Script;
 use MiMFa\Library\Struct;
 
-$table = strToProper(\_::$Address->UrlResource);
+$table = \_::$Address->UrlResource;
 $id = received("Id") ?? received("Code");
 if (!$id)
-    return deliverError("There is no '$table'!");
-if (strtolower($table) === "invoice")
-    $table = "Finance_" . $table;
+    return deliverError("There is not any item!");
+$ltable = strtolower($table);
+if ($ltable === "invoice" || $ltable === "i" || $ltable === "finance_invoice")
+    $table = "Finance_Invoice";
 $invoice = table($table)->SelectRow("*", ["(Id=:Id OR Name=:Id)", authCondition(checkStatus: false)], [":Id" => $id]);
 if (!$invoice)
     return deliverError("There is not find any '$table'!");

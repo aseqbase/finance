@@ -1,0 +1,1 @@
+<?php page("finance/invoice");
