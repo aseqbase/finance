@@ -1,10 +1,12 @@
 <?php
 namespace MiMFa\Library\Payment;
 use MiMFa\Library\Convert;
+use MiMFa\Library\Struct;
 use MiMFa\Library\Finance\MetaDataTable;
 use MiMFa\Library\Finance\Account;
-use MiMFa\Library\Struct;
 
+library("finance\MetaDataTable");
+library("finance\Account");
 class Port
 {
     /**
@@ -79,13 +81,8 @@ class Port
 
     /**
      * To construct a new PaymentPort instance.
-     * @param mixed $port The client identifier for the payment gateway.
+     * @param mixed $terminal The client identifier for the payment gateway.
      * @param mixed $title The title of the payment gateway.
-     * @param mixed $payPath
-     * @param mixed $setPath
-     * @param mixed $getPath
-     * @param mixed $popPath
-     * @param mixed $currency
      */
     public function __construct(
         $terminal,
@@ -400,7 +397,7 @@ class Port
             unset($transaction["MetaData"]["Callback"]);
             unset($transaction["MetaData"]["Success"]);
             unset($transaction["MetaData"]["Error"]);
-            if (table("Finance_Account")->Insert($transaction)) {
+            if (table("Finance_Account")->Insert($transaction) && get($transaction, "Status") == Account::$SucceedStatus) {
                 $fee = get($transaction, "MetaData", "Fee");
                 $feeAmount = get($fee, "Amount");
                 if ($feeAmount && get($fee, "Active"))

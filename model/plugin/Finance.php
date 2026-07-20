@@ -18,6 +18,11 @@ class Finance extends \MiMFa\Library\Revise
      * @field path
      */
     public $Image = "coins";
+    /**
+     * @field text
+     */
+    public $RootUrlPath = "/finance/";
+
     public $DefaultMenu = true;
 
     /**
@@ -40,7 +45,7 @@ class Finance extends \MiMFa\Library\Revise
      * @category Price
      * @field text
      */
-    public $ShownFreePrice = "<strong>Free</strong>";
+    public $ShownFreePrice = "<strong class='be red' style='padding: 3px 7px; border-radius:7px;'>Free</strong>";
     /**
      * The unspecific price indicator
      * @category Price
@@ -64,6 +69,11 @@ class Finance extends \MiMFa\Library\Revise
      * @field text
      */
     public $PaymentTitle = "Payment";
+    /**
+     * @category Payment
+     * @field boolean
+     */
+    public $TestPayment = false;
     /**
      * @category Payment
      * @field text
@@ -147,16 +157,6 @@ class Finance extends \MiMFa\Library\Revise
      * @field path
      */
     public $WalletImage = "wallet";
-    /**
-     * @category Payment
-     * @field bool
-     */
-    public $TestPayment = false;
-    /**
-     * @category Payment
-     * @field text
-     */
-    public $RootUrlPath = "/finance/";
     /**
      * @category Account
      * @field path
@@ -258,9 +258,9 @@ class Finance extends \MiMFa\Library\Revise
     
     public function AmountStruct($amount, $currency = null, $attributes = [])
     {
-        if(is_null($amount) || $amount === '') return $this->ShownUnknownPrice;
-        elseif(!$amount) return $this->ShownFreePrice;
-        else return Struct::Number(round($amount, $this->DecimalPercision), $attributes) . ($currency??$this->ShownCurrency);
+        if(is_null($amount) || $amount === '') return __($this->ShownUnknownPrice);
+        elseif(!$amount) return __($this->ShownFreePrice);
+        else return Struct::Number(round($amount, $this->DecimalPercision), $attributes) . __($currency??$this->ShownCurrency);
     }
 
 }
