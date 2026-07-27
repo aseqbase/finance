@@ -73,7 +73,7 @@ response(
                         Struct::Paragraph(get($invoice, "Description")),
                         ...(($val = get($invoice, "Source")) ? [Struct::Division(Struct::Span("From: ") . Struct::Convert($val), ["class" => "be flex justify middle invoice-special-line"])] : []),
                         ...($p ? [Struct::Division(Struct::Span("By: ") . Struct::Span($p), ["class" => "be flex justify middle invoice-special-line"])] : []),
-                        ...(($val = get($invoice, "Destination")) ? [Struct::Division(Struct::Span("To: ") . Struct::Convert($val), ["class" => "be flex justify middle invoice-special-line"])] : []),
+                        ...(($val = get($invoice, "Destination")?:__(\_::$Front->Name)) ? [Struct::Division(Struct::Span("To: ") . Struct::Convert($val), ["class" => "be flex justify middle invoice-special-line"])] : []),
                         ...(($val = get($invoice, "Transactions")) ? [Struct::Division(Struct::Span("Tracking Code: ") . Struct::Division(Struct::List(loop(Convert::FromJson($val), fn($v, $k) => Struct::Span($k, null, ["Tooltip" => Struct::Items($v, ["class" => "be align start"])]))), ["class" => "be small"]), ["class" => "be flex justify middle invoice-special-line"])] : []),
                         Struct::$BreakLine,
                         ...($priceParams ? loop($priceParams, fn($val, $key) => Struct::Division(Struct::Span($key) . Struct::Span(\_::$Joint->Finance->AmountStruct($val, $currency)), ["class" => "be flex justify middle"])) : []),

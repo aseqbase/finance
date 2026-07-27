@@ -14,7 +14,7 @@ $routeHandler = function ($data) {
     module("Table");
     $table = new MiMFa\Module\Table(table("Finance_Account")->OrderBy("Id", false));
     $table->SelectCondition = Account::Condition(true);
-    $table->IncludeColumns = ["UpdateTime", "Tracking Code" => "Transaction", "Amount", "Currency", "IsDeposited" => Account::DepositCondition(true), "Status", "From" => "SourceId", "To" => "DestinationId", "For" => "Relation", "RelationId", "Description"];
+    $table->IncludeColumns = ["UpdateTime", "Tracking Code" => "Transaction", "Amount", "Currency", "IsDeposited" => Account::DepositCondition(true), "Status", "From" => "SourceId", "To" => "DestinationId", "By" => "Platform", "For" => "Relation", "RelationId", "Description"];
     $table->ExcludeColumns = ["Currency", "RelationId", "IsDeposited"];
     $table->FilterColumns = ["Status"];
     $unit = __(\_::$Joint->Finance->ShownCurrency);
